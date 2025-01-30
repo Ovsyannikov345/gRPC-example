@@ -1,4 +1,5 @@
 using EmployeeService.BLL.DI;
+using EmployeeService.BLL.Grpc.Services;
 using EmployeeService.DAL.DI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDataAccessDependencies();
 builder.Services.AddBusinessLogicDependencies();
+
+builder.Services.AddGrpc();
 
 var app = builder.Build();
 
@@ -27,5 +30,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGrpcService<EmployeeGrpcService>();
 
 app.Run();

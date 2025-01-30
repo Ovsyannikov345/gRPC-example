@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package employeeGrpc;
+
+message GetEmployeeRequest {
+	string issue_category = 1;
+}
+
+message ProtoEmployee {
+	string id = 1;
+	string name = 2;
+	google.protobuf.Timestamp created_at = 3;
+}
+
+service EmployeeGrpcServiceProto {
+	rpc GetEmployee (GetEmployeeRequest) returns (ProtoEmployee);
+}
